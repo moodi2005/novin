@@ -1,0 +1,15 @@
+{
+  "name": "novin",
+  "description": "The Novin Library",
+  "repository": "https://github.com/moodi2005/novin/",
+  "author": "Mohammad Mahdi Moodi <mohammadmahdimoodi2005@gmail.com",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*/*",
+    "example"
+  ],
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
+}

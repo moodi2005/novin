@@ -1,0 +1,36 @@
+{
+  "name": "novin_storage",
+  "version": "0.0.0",
+  "main": "storage.js",
+  "type": "module",
+  "types": "storage.d.ts",
+  "author": "Mohammad Mahdi Moodi <mohammadmahdimoodi2005@gmail.com>",
+  "description": "Elegant micro in-memory json-like storage with disk backed, Faster NoSQL Database written in tiny TypeScript ES module.",
+  "keywords": [
+    "database",
+    "storage",
+    "json",
+    "nosql",
+    "no-sql",
+    "data",
+    "data-storage",
+    "file",
+    "typescript",
+    "esm",
+    "novin"
+  ],
+  "files": [
+    "**/*.{d.ts.map,d.ts,js.map,js,html,md}"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.8.2",
+    "@types/uuid": "^8.3.4"
+  },
+  "dependencies": {
+    "@alwatr/logger": "^0.16.0",
+    "exit-hook": "^3.1.0",
+    "typescript": "^4.8.4",
+    "uuid": "^9.0.0"
+  }
+}
