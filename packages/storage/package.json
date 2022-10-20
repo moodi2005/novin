@@ -1,6 +1,6 @@
 {
   "name": "@webkn/storage",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "main": "storage.js",
   "type": "module",
   "types": "storage.d.ts",

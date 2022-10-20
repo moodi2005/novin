@@ -37,3 +37,7 @@ test.json
 
 temp
 _data/
+
+*.lock
+
+db
