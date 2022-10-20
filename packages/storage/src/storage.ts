@@ -13,7 +13,7 @@ import type { DocumentObject, Keys, Values, NovinStorageConfig } from './type.js
 export { DocumentObject };
 
 alwatrRegisteredList.push({
-  name: '@novin/storage',
+  name: '@webkn/storage',
   version: '{{Novin_Storage}}',
 });
 
@@ -253,7 +253,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
  *   foo: 'bar',
  * });     * ```
  */
-  update(documentObject: DocumentType): boolean {
+  update(documentObject: DocumentType & DocumentObject): boolean {
     const index = this._storage.findIndex((item) => item._id === documentObject._id);
 
 

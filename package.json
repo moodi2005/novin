@@ -11,5 +11,8 @@
   ],
   "devDependencies": {
     "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@webkn/storage": "^0.0.0"
   }
 }

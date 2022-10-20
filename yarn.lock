@@ -2,7 +2,44 @@
 # yarn lockfile v1
 
 
-typescript@^4.8.4:
-  version "4.8.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
-  integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
+"@alwatr/logger@^0.16.0":
+  "integrity" "sha512-yCY/oBmQraH1IJHHvXmX6JpiDmzSbaYCb3giwHbRovb4Zyhqi+h29s30gDuZAjsJ6G1gYY35Yz8xwfL7NXonrA=="
+  "resolved" "https://registry.npmjs.org/@alwatr/logger/-/logger-0.16.0.tgz"
+  "version" "0.16.0"
+  dependencies:
+    "tslib" "^2.3.1"
+
+"@webkn/storage@^0.0.0":
+  "integrity" "sha512-c2zKwHmbMOdw7ZI1Oosgs12oGjcPfVhhNEDz6J6QrnWcbVPBeEut3FIBO02gMGoMrvWXlUsb/eQEQvuqWH82Iw=="
+  "resolved" "https://registry.npmjs.org/@webkn/storage/-/storage-0.0.0.tgz"
+  "version" "0.0.0"
+  dependencies:
+    "@alwatr/logger" "^0.16.0"
+    "exit-hook" "^3.1.0"
+    "typescript" "^4.8.4"
+    "uuid" "^9.0.0"
+
+"exit-hook@^3.1.0":
+  "integrity" "sha512-8zul4XiHQxkCl2ukCuNhKv0MXgsr+Nm/N3umNoJnDUlLLz2iWGo1kd5Y243uUhc9peULX08V2t7yKDHkwpqK4g=="
+  "resolved" "https://registry.npmjs.org/exit-hook/-/exit-hook-3.1.1.tgz"
+  "version" "3.1.1"
+
+"prettier@^2.7.1":
+  "integrity" "sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g=="
+  "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.7.1.tgz"
+  "version" "2.7.1"
+
+"tslib@^2.3.1":
+  "integrity" "sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ=="
+  "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
+  "version" "2.4.0"
+
+"typescript@^4.8.4":
+  "integrity" "sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ=="
+  "resolved" "https://registry.npmjs.org/typescript/-/typescript-4.8.4.tgz"
+  "version" "4.8.4"
+
+"uuid@^9.0.0":
+  "integrity" "sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg=="
+  "resolved" "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
+  "version" "9.0.0"

@@ -8,11 +8,11 @@
     "editor.codeActionsOnSave": {
         "source.fixAll": true
     },
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
     "typescript.tsdk": "node_modules\\typescript\\lib",
     "files.exclude": {
         "**/*.map": true,
-        "**/*.js": false,
+        "**/*.js": true,
         "**/*.d.ts": true,
         "**/*.tsbuildinfo": true
     },
