@@ -28,8 +28,8 @@ export async function readJsonFile<T>(path: string): Promise<T[]> {
             try {
                 Deno.mkdirSync(dirname(path), { recursive: true });
             }
-            catch (_err) {
-                throw new Error('make_dir_failed');
+            catch (err) {
+                throw new Error(err);
             }
             try {
             const encoder = new TextEncoder();
@@ -37,8 +37,8 @@ export async function readJsonFile<T>(path: string): Promise<T[]> {
                 Deno.writeFileSync(path, data,{create:true});
                 return [];
             }
-            catch (_err) {
-                throw new Error('write_file_failed');
+            catch (err) {
+                throw new Error(err);
             }  
         }      
     }

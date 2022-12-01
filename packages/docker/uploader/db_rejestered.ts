@@ -1,4 +1,4 @@
-import { NovinStorage, DocumentObject } from '../../storage/deno/storage.ts';
+import { NovinStorage, DocumentObject } from 'https://cdn.jsdelivr.net/gh/moodi2005/novin@30fe1e0/packages/storage/deno/storage.ts';
 
 
 interface rejestered extends DocumentObject {
