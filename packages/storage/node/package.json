@@ -1,0 +1,46 @@
+{
+  "name": "@webkn/storage",
+  "version": "0.3.0",
+  "main": "storage.js",
+  "type": "module",
+  "types": "storage.d.ts",
+  "author": "Mohammad Mahdi Moodi <mohammadmahdimoodi2005@gmail.com>",
+  "description": "Elegant micro in-memory json-like storage with disk backed, Faster NoSQL Database written in tiny TypeScript ES module.",
+  "keywords": [
+    "database",
+    "storage",
+    "json",
+    "nosql",
+    "no-sql",
+    "data",
+    "data-storage",
+    "file",
+    "typescript",
+    "esm",
+    "novin"
+  ],
+  "files": [
+    "**/*.{d.ts.map,d.ts,js.map,js,html,md}"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@alwatr/logger": "^0.16.0",
+    "exit-hook": "^3.1.0",
+    "uuid": "^9.0.0",
+    "@types/uuid": "^8.3.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moodi2005/novin/tree/main/packages/storage"
+  },
+  "bugs": {
+    "url": "https://github.com/moodi2005/novin/issues"
+  },
+  "homepage": "https://github.com/moodi2005/novin#readme"
+}
