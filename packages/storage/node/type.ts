@@ -1,11 +1,9 @@
 export type JSON = Record<string, unknown>;
 
 export interface DocumentObject {
-  [key: string]: unknown;
-  _id: string;
+  _id?: string;
 }
 
-export type Keys<DocType extends DocumentObject> = keyof DocType
 
 type ValueOf<T> = T[keyof T];
 

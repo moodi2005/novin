@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { readJsonFile, startStorage, writeJsonFile } from './util.js';
 
-import type { DocumentObject, Keys, Values, NovinStorageConfig } from './type.js';
+import type { DocumentObject, Values, NovinStorageConfig } from './type';
 
 export { DocumentObject };
 
@@ -138,7 +138,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    * const novin = userStorage.getItem('userName','Novin');
    * ```
    */
-  getItemByKn(key: Keys<DocumentObject>, value: Values<DocumentObject>): DocumentType | null {
+  getItemByKn(key:keyof DocumentType, value: Values<DocumentObject>): DocumentType | null {
     const document = this._storage.filter((item) => item[key] === value);
     if (document.length !== 0) {
       return document[0]
@@ -176,7 +176,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    * ```
    */
   set(documentObject: DocumentType): DocumentType {
-    if (this.getItem(documentObject._id) !== null) throw new Error('Exist Record');
+    if (this.getItem(documentObject._id ?? '') !== null) throw new Error('Exist Record');
 
     if (this.autoId) documentObject._id = uuidv4();
 
@@ -185,7 +185,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
 
     this.save();
 
-    if (this.logInConsole) this._logger.logMethodArgs('set', documentObject._id);
+    if (this.logInConsole) this._logger.logMethodArgs('set', documentObject._id ?? '');
     return documentObject;
   }
 
@@ -225,7 +225,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    * userStorage.remove('userName','Novin');
    * ```
    */
-  removeItemByKn(key: Keys<DocumentObject>, value: Values<DocumentObject>): boolean {
+  removeItemByKn(key:keyof DocumentType, value: Values<DocumentObject>): boolean {
     const filtered = this._storage.filter((item) => item[key] !== value);
 
     if (filtered.length === this._storage.length) {
@@ -261,7 +261,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
       this._storage[index] = documentObject;
       this.save();
 
-      if (this.logInConsole) this._logger.logMethodArgs('update', documentObject._id);
+      if (this.logInConsole) this._logger.logMethodArgs('update', documentObject._id ?? '');
       return true
     } else {
       return false
@@ -314,7 +314,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
     }
 
     if (this.hasUnsavedChanges) {
-      writeJsonFile(this.storagePath, this._storage, this.saveBeautiful ? 2 : 0);
+      writeJsonFile<DocumentObject>(this.storagePath, this._storage, this.saveBeautiful ? 2 : 0);
       this.hasUnsavedChanges = false;
     }
   }

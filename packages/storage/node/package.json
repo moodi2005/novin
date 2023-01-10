@@ -1,6 +1,6 @@
 {
   "name": "@webkn/storage",
-  "version": "0.3.0",
+  "version": "0.6.2",
   "main": "storage.js",
   "type": "module",
   "types": "storage.d.ts",
@@ -28,9 +28,10 @@
   },
   "dependencies": {
     "@alwatr/logger": "^0.16.0",
+    "@types/uuid": "^8.3.4",
     "exit-hook": "^3.1.0",
-    "uuid": "^9.0.0",
-    "@types/uuid": "^8.3.4"
+    "typescript": "^4.9.4",
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -42,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/moodi2005/novin/issues"
   },
-  "homepage": "https://github.com/moodi2005/novin#readme"
+  "homepage": "https://github.com/moodi2005/novin#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.18"
+  }
 }

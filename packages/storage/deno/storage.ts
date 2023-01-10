@@ -54,7 +54,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    * log in works.
    */
   readonly logInConsole;
-  
+
   /**
    * The storage has unsaved changes that have not yet been saved.
    */
@@ -82,11 +82,11 @@ export class NovinStorage<DocumentType extends DocumentObject> {
     this.saveDebounce = config.saveDebounce ?? 1000;
     this.logInConsole = config.logInConsole ?? true;
     this.autoId = config.autoId || true;
-    
+
     this.start();
   }
 
-  
+
   /**
    * Start Storage
    *
@@ -96,15 +96,15 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    * Example:
    * userStorage.start()
    */
-   private async  start(): Promise<void> {  
-  this._storage = await readJsonFile<DocumentType>(this.storagePath);
+  private async start(): Promise<void> {
+    this._storage = await readJsonFile<DocumentType>(this.storagePath);
 
-  if(!logStart) {
-  console.log('\x1b[33m',"Novin Storage Started");
-  console.log('storage is ready to receive any amount of data (Ok)','\x1b[0m');
+    if (!logStart) {
+      console.log('\x1b[33m', "Novin Storage Started");
+      console.log('storage is ready to receive any amount of data (Ok)', '\x1b[0m');
 
-  logStart = true;
-  }
+      logStart = true;
+    }
 
   }
 
@@ -297,14 +297,14 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    * });
    * ```
    */
-  forAll(callbackfn: (documentObject: DocumentType) => void | false | Promise<void | false>):void {
+  forAll(callbackfn: (documentObject: DocumentType) => void | false | Promise<void | false>): void {
     this._storage.forEach(async (item) => {
       await callbackfn(item);
     })
     this.save();
   }
 
-  private _saveTimer:number | null = null;
+  private _saveTimer: number | null = null;
 
   /**
    * Save the storage to disk.

@@ -1,8 +1,6 @@
 import { existsSync, mkdirSync, writeFileSync, renameSync, readFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 
-import type { JSON } from './type.js';
-
 /**
  * Enhanced read json file.
  * @example
@@ -32,7 +30,7 @@ export function readJsonFile<T>(path: string): T[] {
  * @example
  * writeJsonFile('./file.json', { a:1, b:2, c:3 });
  */
-export function writeJsonFile<T extends JSON>(path: string, dataObject: T[], space?: string | number | undefined): void {
+export function writeJsonFile<T>(path: string, dataObject: T[], space?: string | number | undefined): void {
 
     let jsonContent;
     try {
@@ -73,9 +71,9 @@ export function writeJsonFile<T extends JSON>(path: string, dataObject: T[], spa
  * startStorage('./db/novin.json')
  */
 export function startStorage(path: string) {
-    console.log('\x1b[33m','\n<<==============Novin Storage=============>>');
+    console.log('\x1b[33m', "Novin Storage Started");
+
     if (!existsSync(path)) {
-        console.log('Welcome To Novin Storage,this is a json file database');
         try {
             mkdirSync(dirname(path), { recursive: true });
             try {
@@ -89,8 +87,6 @@ export function startStorage(path: string) {
         catch (err) {
             throw new Error('make_dir_failed');
         }
-    } else {
-        console.log('\x1b[32m','The File 👌');
     }
-    console.log('\x1b[33m','\n storage is ready to receive any amount of data     (👍 ᵔ︣ ͜ʖ ᵔ︣ )👍');
+    console.log('storage is ready to receive any amount of data (Ok)', '\x1b[0m');
 }
