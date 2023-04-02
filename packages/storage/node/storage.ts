@@ -140,6 +140,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    */
   getItemByKn(key:keyof DocumentType, value: Values<DocumentObject>): DocumentType | null {
     const document = this._storage.filter((item) => item[key] === value);
+    
     if (document.length !== 0) {
       return document[0]
     } else {

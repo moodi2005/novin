@@ -150,7 +150,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    * const novin = userStorage.getItem('userName','Novin');
    * ```
    */
-  getItemByKn(key: Keys<DocumentType>, value: Values<DocumentType>): DocumentType | null {
+  getItemByKn(key:keyof DocumentType, value: Values<DocumentObject>): DocumentType | null {
     const document = this._storage.filter((item) => item[key] === value);
     if (document.length !== 0) {
       return document[0]
@@ -239,7 +239,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
    * userStorage.remove('userName','Novin');
    * ```
    */
-  removeItemByKn(key: Keys<DocumentObject>, value: Values<DocumentObject>): boolean {
+  removeItemByKn(key:keyof DocumentType, value: Values<DocumentObject>): boolean {
     const filtered = this._storage.filter((item) => item[key] !== value);
 
     if (filtered.length === this._storage.length) {
@@ -248,7 +248,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
       this._storage = filtered
       this.save();
 
-      if (this.logInConsole) console.log(`@webkn-storage => ${this.name}.remove(key:${key},value:${value})`);
+      if (this.logInConsole) console.log(`@webkn-storage => ${this.name}.remove(key:${String(key)},value:${value})`);
       return true;
     }
 
@@ -275,7 +275,7 @@ export class NovinStorage<DocumentType extends DocumentObject> {
       this._storage[index] = documentObject;
       this.save();
 
-      if (this.logInConsole) console.log(`@webkn/storage => ${this.name}.update${documentObject._id}`);
+      if (this.logInConsole) console.log(`@webkn/storage => ${this.name}.update(${documentObject._id})`);
       return true
     } else {
       return false

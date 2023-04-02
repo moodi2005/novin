@@ -2,33 +2,44 @@ import express from "express";
 import multer from 'multer';
 import { dirname } from 'path';
 import colors from 'colors';
+import cors from 'cors';
 import { writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs';
 import { db } from './db.js';
 const app = express();
 
-const port = process.env.port ?? 80
+const port = process.env.port ?? 1200;
+const path = process.env.path ?? './files'
 
 const upload = multer();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 
-app.post('/', upload.single('file'), (req, res) => {
+app.use(cors({
+    origin: '*'
+}));
+
+app.post('/api/uploader/', upload.single('file'), (req, res) => {
     if (req.file) {
 
         if (req.body.token !== process.env.tokenUpload) return res.sendStatus(403);
 
+
         const file = req.file;
+        file.originalname = Buffer.from(file.originalname, 'latin1').toString('utf8');
         let name = `${file.originalname}`;
-        if (existsSync(`./files/${name}`)) {
-            for (let i = 0; existsSync(`./files/${name}`); i++) {
-                name = `${file.originalname.split('.'[0])}(${i}).${file.originalname.split('.')[1]}`;
+        if (existsSync(`${path}/${name}`)) {
+            for (let i = 0; existsSync(`${path}/${name}`); i++) {
+                const formatArray = req.file.originalname.split('.');
+                const format = formatArray[formatArray.length-1]
+                const newName = file.originalname.replace(`.${format}`,`(${i}).${format}`);
+                name = newName;
             }
         }
-        writeFileSync(`./files/${name}`, req.file.buffer);
+        writeFileSync(`${path}/${name}`, req.file.buffer);
         const _id = db.set({
             name,
-            public: Boolean(req.body.public) ?? true,
+            public: req.body.public === 'false' ? false : true,
             type: file.mimetype.split('/')[0]
         })
         res.json({
@@ -43,34 +54,31 @@ app.post('/', upload.single('file'), (req, res) => {
 
 });
 
-app.get('/:name', (req, res) => {
-    const name = req.path.split('/')[1];
-    const { id, view } = req.query;
+app.get('/api/uploader', (req, res) => {
+    const { id, view , name} = req.query;
 
-    const file = db.getItemByKn('name', name);
+    const file = db.getItemByKn('name', name as string);
+
 
     if (!file || (!file.public && file._id !== id)) return res.sendStatus(404);
 
     if (file.type === 'image' || view === 'true') {
-        res.sendFile(`./files/${name}`, { root: dirname('') });
+        res.sendFile(`${path}/${name}`, { root: dirname('') });
     } else {
-        res.download(`./files/${name}`);
+        res.download(`${path}/${name}`);
     }
 });
 
-app.delete('/delete', (req, res) => {
-    const { token, name, id } = req.body;
+app.post('/api/uploader/delete', (req, res) => {
+    const { token, name } = req.body;
 
     if (token !== process.env.tokenDelete) return res.sendStatus(403);
 
+    const file = db.getItemByKn('name',name);
 
-    const file = db.getItem(id);
+    if (!file) return res.json('not exit file')
 
-
-    if (!file || (file.name !== name)) return res.sendStatus(404);
-
-
-    unlinkSync(`./files/${file.name}`);
+    unlinkSync(`${path}/${file.name}`);
 
     db.removeItem(file._id);
 
@@ -83,7 +91,7 @@ app.delete('/delete', (req, res) => {
 
 
 app.listen(port, () => {
-    if (!existsSync('./files')) mkdirSync('./files');
+    if (!existsSync(path)) mkdirSync(path);
 
     console.log(colors.yellow(' -------------------'))
     console.log(colors.yellow('| '),colors.bgBlue('Novin Uploader'),colors.yellow(' |'));

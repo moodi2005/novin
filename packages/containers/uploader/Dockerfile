@@ -4,6 +4,7 @@ ENV VERSION 0.0.0
 
 ADD . .
 
+
 RUN yarn
 RUN yarn build
 
